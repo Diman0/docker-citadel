@@ -34,9 +34,4 @@ NOTE: If you create a new container and re-use the data volumes, then you do not
 
 TODO
 -------------
-* I don't know. 
-
-THANKS
--------------
-For clamav (virusscanner) I use docker image mailu/clamav
-For spammassassin (anti spam solution) I use diman/spamassassin which is based 99.99% on dinkel/spamassassin.
+* Maybe configure supervisor in such a way it stops the container (supervisor process exit) when citadel stops and cannot be recovered. 
