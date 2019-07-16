@@ -1,5 +1,11 @@
 #!/bin/bash
 #
+# Modified easyinstall script. All interactivity is commented out.
+# After the software is build and installed we are done. 
+# Citadel-setup and Webcit-setup are not started.
+# So the script only builds and installs the software.
+# The standard ./configure, make, make install commands.
+#
 # Automatic script to install Citadel on a target system.
 # Copyright (C) 2004 Michael Hampton <error@citadel.org>
 # Copyright (C) 2004-2018 Art Cancro <ajc@citadel.org>
@@ -795,7 +801,7 @@ show_info 'finished building and installing citadel'
 #show_info 'Starting Citadel server...'
 #/etc/init.d/citadel start
 
-# DIMITRI made a modification here. We do NOT setup citadel and webcit.
+# We do not run citadel-setup and webcit-setup.
 # $CITADEL/setup </dev/tty || die
 # $WEBCIT/setup </dev/tty || die
 
