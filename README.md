@@ -22,6 +22,7 @@ Next step is configuring citadel for first time usage.
 Configuration
 -----------------
 After starting the container for the first time, you must run setup once to configure citadel.
+    
     docker exec -it citadel bash  (where citadel is the name of the container)
 
     /usr/local/citadel/setup
