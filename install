@@ -771,31 +771,31 @@ else
 	show_info 'This is a new Citadel installation.'
 fi
 
-if [ -x /etc/init.d/citadel ] ; then
-	show_info 'Stopping any previously running Citadel server...'
-	/etc/init.d/citadel stop
-fi
+#if [ -x /etc/init.d/citadel ] ; then
+#	show_info 'Stopping any previously running Citadel server...'
+#	/etc/init.d/citadel stop
+#fi
 
 # If we are running a Linux operating system we try even harder to stop citserver
-if uname -a | grep -i linux ; then
-	if ps ax | grep citserver | grep -v grep ; then
-		show_alert 'citserver still running ... trying again to terminate it'
-		killall citserver
-		sleep 3
-	fi
-fi
+#if uname -a | grep -i linux ; then
+#	if ps ax | grep citserver | grep -v grep ; then
+#		show_alert 'citserver still running ... trying again to terminate it'
+#		killall citserver
+#		sleep 3
+#	fi
+#fi
 
 # If we are running a Linux operating system we now try to kill a running citserver
-if uname -a | grep -i linux ; then
-	if ps ax | grep citserver | grep -v grep ; then
-		show_alert 'citserver still running ... trying again to terminate it'
-		killall -9 citserver
-		sleep 3
-	fi
-fi
+#if uname -a | grep -i linux ; then
+#	if ps ax | grep citserver | grep -v grep ; then
+#		show_alert 'citserver still running ... trying again to terminate it'
+#		killall -9 citserver
+#		sleep 3
+#	fi
+#fi
 
-FILENAME=citadel-init-scripts.tar ; download_this
-cat citadel-init-scripts.tar | (cd / ; tar xvf - )
+#FILENAME=citadel-init-scripts.tar ; download_this
+#cat citadel-init-scripts.tar | (cd / ; tar xvf - )
 show_info 'finished building and installing citadel'
 
 #show_info 'Starting Citadel server...'

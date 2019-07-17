@@ -35,4 +35,4 @@ NOTE: If you create a new container and re-use the data volumes, then you do not
 
 TODO
 -------------
-* Maybe configure supervisor in such a way it stops the container (supervisor process exit) when citadel stops and cannot be recovered. 
+* Add health check to stop the container when citserver dies. Either via dockerfile or script in image.
