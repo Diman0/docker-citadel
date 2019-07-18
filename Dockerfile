@@ -26,7 +26,7 @@ RUN /root/install
 
 FROM debian:stretch
 ARG DEBIAN_FRONTEND=noninteractive
-RUN apt-get update && apt-get install -y \
+RUN apt-get update && apt-get install --no-install-recommends -y \
  gettext \
  libc6 \
  libcurl3 \
