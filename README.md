@@ -33,6 +33,12 @@ After starting the container for the first time, you must run setup once to conf
 
 NOTE: If you create a new container and re-use the data volumes, then you do not have to run setup. As all configuration resides in the database, the container will immediately be up and running with all your configuration and data retained. The only exceptions are the mail.aliases file and files related to BBS functionality. See data files section in http://citadel.org/doku.php?id=documentation:file_layout#files.and.where.easy.install.and.lhfs.rpm.deb.installs.put.them for more info. If you use this BBS functionality you could create volumes for these folders as well.
 
+Tags
+-----------------
+* latest = release-v927
+* release-v927
+* release-v925
+
 TODO
 -------------
 * Add health check to stop the container when citserver dies. Either via dockerfile or script in image.
