@@ -4,7 +4,7 @@ Home of citadel: http://citadel.org
 
 Citadel as a Docker Image. Citadel is build using easyinstall method. Setup has not been run to configure the installation.
 
-Supervisord (http://supervisord.org) is used to monitor the citadel/webcit programs.
+Supervisord (http://supervisord.org) is used to monitor the citadel/webcit programs. It stops the container if citadel/webcit fails or exits.
 
 Usage 
 --------------
@@ -39,6 +39,4 @@ Tags
 * release-v927
 * release-v925
 
-TODO
--------------
-* Add health check to stop the container when citserver dies. Either via dockerfile or script in image.
+
