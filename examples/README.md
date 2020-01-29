@@ -27,7 +27,7 @@ Example jail.local excerpt
     [citadel]
     enabled  = true
     filter   = citadel
-    logpath  = /var/log/syslog
+    logpath  = /var/log/citadel/syslog
     maxretry = 5
     bantime = 24h
     findtime = 24h
