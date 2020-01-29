@@ -27,6 +27,7 @@ RUN /root/install
 FROM debian:stretch
 ARG DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && apt-get install --no-install-recommends -y \
+ rsyslog \
  gettext \
  libc6 \
  libcurl3 \
@@ -50,8 +51,11 @@ COPY --from=build /usr/local/webcit/ /usr/local/webcit/
 COPY --from=build /usr/local/ctdlsupport/ /usr/local/ctdlsupport/
 COPY supervisord.conf /etc/supervisor/supervisord.conf
 COPY stop-supervisor.sh /etc/supervisor/stop-supervisor.sh
+COPY rsyslog.conf /etc/rsyslog.conf
+COPY start.sh /scripts/start.sh
 RUN mkdir /var/log/supervisor_log
 
 EXPOSE 25 80 110 143 465 587 993 995
 
-ENTRYPOINT ["/usr/bin/supervisord","-c","/etc/supervisor/supervisord.conf"]
+#ENTRYPOINT ["/usr/bin/supervisord","-c","/etc/supervisor/supervisord.conf"]
+ENTRYPOINT ["/scripts/start.sh"]
