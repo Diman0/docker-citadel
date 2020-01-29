@@ -1,0 +1,60 @@
+version: '3.3'
+services:
+  citadel:
+    image: diman/citadel:v928
+    networks:
+      - citadel-network
+    restart: always
+    depends_on:
+      - spamassassin
+      - clamav
+    ports:
+      - "25:25"
+      - "6060:80"
+      - "143:143"
+      - "465:465"
+      - "587:587"
+      - "993:993"
+    stop_grace_period: 1m
+    volumes:
+      - type: "volume"
+        source: citadel-data
+        target: /usr/local/citadel/data
+      - type: volume
+        source: citadel-alias
+        target: /usr/local/citadel/network
+      - type: bind
+        source: /etc/letsencrypt/live/<REDACTED>/privkey.pem 
+        target: /usr/local/citadel/keys/citadel.key
+        read_only: true
+      - type: bind
+        source: /etc/letsencrypt/live/<REDACTED>/fullchain.pem
+        target: /usr/local/citadel/keys/citadel.cer
+        read_only: true
+      - type: bind
+        source: /var/log/citadel
+        target: /var/log
+
+  spamassassin:
+    image: instantlinux/spamassassin:19.12
+    networks:
+      - citadel-network
+    restart: always
+    stop_grace_period: 1m
+
+  clamav:
+    image: dinkel/clamavd
+    networks:
+      - citadel-network
+    restart: always
+    stop_grace_period: 1m
+
+volumes:
+  citadel-data: 
+    external: true
+  citadel-alias:
+    external: true
+
+networks:
+  citadel-network:
+    driver: bridge
