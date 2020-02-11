@@ -60,16 +60,22 @@ Creating a backup
 ----------------------
 Creating a backup is a matter of temporarily stopping the citadel container and creating a tar archive. See backupContainer.sh for an example script. E.g.
 * docker-compose -p mail -f /scripts/docker/docker-compose.yml up -d --no-recreate --scale citadel=0
+
 This command informs docker-compose to reduce the amount of citadel containers to 0.
+Now mount the citadel data volume and create a backup using tar.
+
 * docker run --rm -v /backup/:/backup -v citadel-data:/usr/local/citadel/data -v citadel-alias:/usr/local/citadel/network debian:stretch "tar -cpf /backup/citadelBackup.tar.gz /usr/local/citadel/data /usr/local/citadel/network
-Mount the citadel data volume and create a backup using tar.
-* docker-compose -p mail -f /scripts/docker/docker-compose.yml up -d --no-recreate --scale citadel=1
+
 Start the citadel container again. 
+
+* docker-compose -p mail -f /scripts/docker/docker-compose.yml up -d --no-recreate --scale citadel=1
+
 Note the "-d" parameter for docker-compose. You must specify "-d" to make sure the containers are started in the background. Default behaviour of docker-compose is to start in the foreground.
 
 Restoring a backup
 ---------------------
 Restoring your backup is a matter of extracting the tar backup archive to your data volume. See restoreBackupContainer.sh for an example script.
+
 Stop citadel.
 
 * docker-compose -p mail -f /scripts/docker/docker-compose.yml up -d --no-recreate --scale citadel=0
