@@ -4,6 +4,7 @@ See docker-compose.yml for an example docker compose file. This provides you wit
 
 To start citadel stack use docker-compose
     docker-compose -p mail -f /scripts/docker/docker-compose.yml up -d
+    
 Docker-compose uses a so called project name that will be prepended to all container names. By default this is the folder name. To avoid conflicts, you can specify the project name via -p. This will create the containers mail_citadel_1, mail_clamav_1 and mail_spamassassin_1. You must specify "-d" to make sure the containers are started in the background. Default behaviour of docker-compose is to start in the foreground.
 
 I use letsencrypt for certificates and make them available to the container via bind mount.
@@ -57,7 +58,7 @@ Example filter.d /etc/fail2ban/filter.d/citadel.conf
 
 Creating a backup
 ----------------------
-Creating a backup is a matter of temporarily stopping the citadel container and creating a tar archive. E.g.
+Creating a backup is a matter of temporarily stopping the citadel container and creating a tar archive. See backupContainer.sh for an example script. E.g.
 * docker-compose -p mail -f /scripts/docker/docker-compose.yml up -d --no-recreate --scale citadel=0
 This command informs docker-compose to reduce the amount of citadel containers to 0.
 * docker run --rm -v /backup/:/backup -v citadel-data:/usr/local/citadel/data -v citadel-alias:/usr/local/citadel/network debian:stretch "tar -cpf /backup/citadelBackup.tar.gz /usr/local/citadel/data /usr/local/citadel/network
@@ -68,12 +69,18 @@ Note the "-d" parameter for docker-compose. You must specify "-d" to make sure t
 
 Restoring a backup
 ---------------------
-Restoring your backup is a matter of extracting the tar backup archive to your data volume.
+Restoring your backup is a matter of extracting the tar backup archive to your data volume. See restoreBackupContainer.sh for an example script.
 Stop citadel.
+
 * docker-compose -p mail -f /scripts/docker/docker-compose.yml up -d --no-recreate --scale citadel=0
+
 Start interactive docker container for extracting the tar archive. 
 * docker run -it --rm -v /backup/:/backup -v citadel-data:/usr/local/citadel/data -v citadel-alias:/usr/local/citadel/network debian:stretch /bin/bash
+
 In the container extract the tar archive
+
 * tar -x -f /backup/backupCitadel.tar.gz -v 
+
 Start citadel again
+
 * docker-compose -p mail -f /scripts/docker/docker-compose.yml up -d --no-recreate --scale citadel=1
