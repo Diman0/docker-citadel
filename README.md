@@ -17,6 +17,7 @@ With a network in case you are linking the container with a clamav and spamassas
 
     docker run  -d --name citadel -p "25:25" -p "80:80" -p "143:143"  -p "465:465" -p "587:587" -p "993:993" --mount 'type=volume,src=citadel-data,dst=/usr/local/citadel/data' --mount 'type=volume,src=citadel-alias,dst=/usr/local/citadel/network/mail.aliases'--network citadel-network
 
+However it is recommended to use docker compose. See examples folder for an example docker-compose.yml file.
 Next step is configuring citadel for first time usage.
 
 Configuration
