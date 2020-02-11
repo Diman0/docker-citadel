@@ -64,7 +64,7 @@ Creating a backup is a matter of temporarily stopping the citadel container and 
 This command informs docker-compose to reduce the amount of citadel containers to 0.
 Now mount the citadel data volume and create a backup using tar.
 
-* docker run --rm -v /backup/:/backup -v citadel-data:/usr/local/citadel/data -v citadel-alias:/usr/local/citadel/network debian:stretch "tar -cpf /backup/citadelBackup.tar.gz /usr/local/citadel/data /usr/local/citadel/network
+* docker run --rm -v /backup/:/backup -v citadel-data:/usr/local/citadel/data -v citadel-alias:/usr/local/citadel/network debian:stretch "tar -cpf /backup/citadelBackup.tar.gz /usr/local/citadel/data /usr/local/citadel/network"
 
 Start the citadel container again. 
 
