@@ -20,9 +20,10 @@ that monitors this file.
 If you create a bind mount as above for /var/log, then you must create the (local) folders
 * /var/log/citadel/supervisor_log
 * /var/log/citadel/
+
 The supervisor_log folder is used by supervisor for logging std out and std err of citadel and webcit. 
  
-Citadel logs to /var/log/auth.log. You can monitor auth.log for failed login attempt to SMPT.
+Citadel logs to /var/log/auth.log. You can monitor auth.log for failed login attempts to SMPT.
 Below is an example for monitoring and banning for failed login attempts for SMTP.
 
 It DOES NOT check for failed logon attempts on webcit!
