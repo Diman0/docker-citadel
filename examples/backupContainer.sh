@@ -21,7 +21,7 @@ echo "Stop citadel."
 docker-compose -p mail -f /scripts/docker/docker-compose.yml up -d --no-recreate --scale citadel=0
 
 echo "Making backup of citadel docker volumes"
-docker run --rm -v /backup/:/backup -v citadel-data:/usr/local/citadel/data -v citadel-alias:/usr/local/citadel/network debian:stretch $TAR_CMD
+docker run --rm -v /backup/:/backup -v citadel-data:/usr/local/citadel/data debian:stretch $TAR_CMD
 
 echo "Start citadel."
 
